@@ -1,0 +1,44 @@
+"Feature","Importance"
+"WaitingDays_catWithin fortnight",100
+"SMS_received",96.8329644975138
+"WaitingDays_cat2-3 days",91.7808628306114
+"WaitingDays_catWithin month",80.0069970922729
+"WaitingDays_catWithin week",76.5492702326774
+"WaitingDays_catOver month",71.4732464358234
+"WaitingDays_catNext day",54.5198415386956
+"YoungWithLongWaitTRUE",29.3840833059558
+"NeighbourhoodRiskHigh Risk",14.8228565405497
+"AgeGroupMiddle Age",14.696286276716
+"AgeGroupElderly",11.5618669743636
+"GenderM",10.5830918943317
+"WeekDayMonday",9.9064680744446
+"WelfareBenefits",9.14209297777119
+"NeighbourhoodRiskModerate Risk",8.99390447626805
+"Disability",8.75690426836574
+"ElderlyWithSMSTRUE",8.74394814272581
+"HealthConditionCount",8.65350148628652
+"SeasonSpring",8.6119384560354
+"AgeGroupWorking Age",8.1492701106554
+"WeekDayWednesday",7.42802326739456
+"NeighbourhoodVolumeHigh Volume",7.31796665265544
+"AgeGroupYoung People",7.24704424856098
+"WeekDayFriday",7.19082913161099
+"NeighbourhoodVolumeMedium Volume",6.82984218599343
+"NeighbourhoodRiskLow Risk",6.74631446961727
+"HealthConditionsHypertension",6.03056733391028
+"WeekDayTuesday",5.62822145442599
+"WeekDayThursday",5.40404082369291
+"HealthConditionsAlcoholism",4.74575589921352
+"HealthConditionsDiabetes & Hypertension",3.71747291953297
+"HealthConditionsDiabetes",3.25329491459794
+"AgeGroupVery Elderly",3.19728098874573
+"HealthConditionsHypertension & Alcoholism",2.51340230503115
+"HealthConditionsWithBenefitsTRUE",2.13529704754316
+"SeasonSummer",1.62158971647076
+"HealthConditionsMultiple Conditions",1.59445833429692
+"HealthConditionsDiabetes & Alcoholism",0.381260671117721
+"WeekDaySaturday",0
+"TimeOfDayMidday",0
+"TimeOfDayAfternoon",0
+"TimeOfDayEvening",0
+"SeasonAutumn",0
