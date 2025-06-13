@@ -630,3 +630,85 @@ This project explores fundamental natural language processing (NLP) techniques u
 
 
 
+## Project 11: Predicting Board Game Ratings with Machine Learning
+
+### Overview
+This project applies exploratory data analysis and machine learning techniques to a dataset of board games to predict their average ratings. The workflow includes data cleansing, feature engineering, visualisation, and the use of linear regression and random forest models for regression tasks.
+
+### Dataset
+- **Source:** [Kaggle - Board Game Geek Data](https://www.kaggle.com/datasets/evangower/board-game-data)
+- **Features:**  
+  - Game metadata (id, type, name, year published, player counts, playtime, min age)
+  - Community statistics (users rated, average rating, Bayes average rating, number of owners, traders, wanters, wishers, comments, weight ratings)
+  - Target variable: `average_rating` (average user rating for the game)
+- **Size:** 81,312 rows × 20 columns (before cleaning)
+
+### Implementation Details
+
+**Data Exploration and Visualisation**
+- Initial exploration of dataset shape and columns.
+- Histogram visualisation of all board game average ratings.
+- Inspection of games with zero and nonzero ratings.
+
+**Data Cleansing**
+- Removal of games without user reviews (`users_rated` == 0).
+- Removal of rows with missing values.
+- Re-visualisation of the cleaned ratings distribution.
+
+**Feature Engineering**
+- Construction of a correlation heatmap for numerical features.
+- Selection of predictive features, with removal of identifiers and target columns.
+
+**Train/Test Split**
+- 80% of the data for training, 20% for testing (random sampling).
+
+**Model Training and Evaluation**
+- **Linear Regression**
+  - Training on selected features.
+  - Evaluation with mean squared error (MSE) on the test set.
+- **Random Forest Regressor**
+  - Training with 100 trees, minimum leaf size of 10, fixed random seed.
+  - Evaluation with MSE on the test set (lower MSE than linear regression).
+
+**Example Predictions**
+- Both models make predictions for a single test game, compared to its actual rating.
+
+### Example Results
+
+| Model                   | Mean Squared Error |
+|-------------------------|-------------------|
+| Linear Regression       | 2.08              |
+| Random Forest Regressor | 1.45              |
+
+Sample prediction for a test game:
+- Linear Regression: 8.12
+- Random Forest: 7.91
+- Actual: 8.08
+
+### Visualisation
+- Histograms of average ratings before and after cleaning.
+- Correlation heatmap of numeric features.
+
+### Tools and Libraries
+- **Python**: Jupyter/Colab notebook or script
+- **Data Manipulation**: pandas
+- **Visualisation**: matplotlib, seaborn
+- **Machine Learning**: scikit-learn
+
+### Usage
+
+1. Ensure Python and required packages are installed:
+   - `pandas`, `matplotlib`, `seaborn`, `scikit-learn`
+2. Download the dataset (`games.csv`) from [Kaggle Board Game Data](https://www.kaggle.com/datasets/evangower/board-game-data).
+3. Run the script or notebook.
+   - The code will load, clean, visualise, and model the data.
+4. Review printed mean squared errors, sample predictions, and displayed plots.
+
+### Future Work
+- Experiment with additional regression algorithms (XGBoost, Gradient Boosting).
+- Incorporate categorical encoding for features such as year or type.
+- Perform hyperparameter tuning for the random forest.
+- Build a web app for interactive board game rating prediction.
+
+
+
