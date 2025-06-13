@@ -552,4 +552,81 @@ Each subplot shows model's predicted class and actual class for visual inspectio
 5. Review printed accuracy and the image grid of predictions.
 
 
+## Project 10: Natural Language Processing Fundamentals with NLTK
+
+### Overview
+This project explores fundamental natural language processing (NLP) techniques using the NLTK library in Python. The workflow covers tokenisation, stop word removal, stemming, part-of-speech tagging, chunking, named entity recognition, and sentiment analysis using the movie reviews corpus. The project also demonstrates how to integrate NLTK tokenisation and feature extraction with scikit-learn classifiers.
+
+### Dataset
+- **Sample Texts:** Provided within the code and NLTK corpora.
+- **Corpora Used:**
+  - [state_union](https://www.nltk.org/nltk_data/) (presidential speeches)
+  - [movie_reviews](https://www.nltk.org/nltk_data/) (labelled positive/negative reviews)
+  - Universal Declaration of Human Rights (UDHR) for multilingual examples
+
+### Implementation Details
+
+**Tokenisation & Stop Word Removal**
+- Sentence and word tokenisation with `sent_tokenize` and `word_tokenize`.
+- Removal of English stop words using `nltk.corpus.stopwords`.
+
+**Stemming**
+- Application of the Porter Stemmer to words and whole sentences for root word extraction.
+
+**Part-of-Speech Tagging**
+- Tokenisation and tagging of words in sentences using `nltk.pos_tag`.
+
+**Chunking & Chinking**
+- Use of regular expressions to extract and visualise chunks (noun phrases) and chinks from tagged sentences with `nltk.RegexpParser`.
+
+**Named Entity Recognition**
+- Extraction and visualisation of named entities using `nltk.ne_chunk`.
+
+**Text Corpus Exploration**
+- Use of the state_union and UDHR corpora for practical NLP examples.
+
+**Sentiment Analysis with Movie Reviews**
+- Creation of a document list from the NLTK movie_reviews corpus, labelled as positive or negative.
+- Construction of a frequency distribution and selection of the 4,000 most common words as features.
+- Feature extraction for each review (bag-of-words, presence/absence of features).
+
+**Model Training and Evaluation**
+- Split of feature sets into training and testing datasets using scikit-learn's `train_test_split`.
+- Use of scikit-learn's SVM (linear kernel) via NLTK's `SklearnClassifier`.
+- Training on the training set and evaluation on the test set.
+- Example accuracy: SVC achieves ~81% accuracy on the test split.
+
+### Example Results
+
+| Step                        | Output Example                                      |
+|-----------------------------|-----------------------------------------------------|
+| Sentence tokenisation       | ['Hello students, how are you doing today?', ...]   |
+| Word tokenisation           | ['Hello', 'students', ',', 'how', 'are', ...]      |
+| Stop word removal           | ['This', 'sample', 'text', ..., 'filtration', '.'] |
+| Stemming                    | ['ride', 'ride', 'rider', 'ride']                  |
+| POS tagging                 | [('Hello', 'NNP'), ('students', 'NNS'), ...]       |
+| Chunking                    | (Chunk PRESIDENT/NNP GEORGE/NNP W./NNP BUSH/NNP)   |
+| SVC sentiment accuracy      | 0.814                                               |
+
+### Tools and Libraries
+- **Python**: Jupyter/Colab notebook or script
+- **Natural Language Processing**: NLTK
+- **Machine Learning**: scikit-learn
+
+### Usage
+
+1. Ensure Python and required packages are installed:
+   - `nltk`, `scikit-learn`
+2. Download required NLTK data packages (stopwords, punkt, averaged_perceptron_tagger, maxent_ne_chunker, words, movie_reviews, etc.) using `nltk.download()`.
+3. Run the script or notebook.
+   - The code will demonstrate tokenisation, stemming, POS tagging, chunking, named entity recognition, and sentiment analysis.
+4. Review outputs and example accuracy on the test set.
+
+### Future Work
+- Extend sentiment analysis to more advanced classifiers (e.g., Logistic Regression, Random Forest).
+- Integrate word embeddings (Word2Vec, GloVe) for richer features.
+- Expand to named entity recognition in other domains.
+- Build a pipeline for document classification on new datasets.
+
+
 
