@@ -159,3 +159,48 @@ The project is implemented in R script format. To run the analysis:
 2. Ensure R and required packages are installed
 3. Run the improved_medical_noshow_prediction.R script
 4. Model outputs will be saved in the project directory
+
+## Project 3: Diabetes Risk Prediction
+
+### Overview
+This project predicts diabetes risk using a range of classical machine learning models on a dataset of patient symptoms and demographic attributes.
+
+### Dataset
+- Features: Age, Gender, and 14 symptom indicators (e.g., Polyuria, Polydipsia, sudden weight loss, etc.)
+- Target: Diabetes class (Positive/Negative)
+- Size: 520 entries
+
+### Implementation Details
+
+#### Data Preprocessing
+- Encode categorical variables and binary symptoms as 0/1
+- Encode target variable
+- Stratified train-test split (70/30)
+- Feature standardization
+
+#### Model Training
+Trained and evaluated the following classifiers:
+- Logistic Regression
+- K-Nearest Neighbors
+- Decision Tree
+- Support Vector Machine (Linear and RBF kernels)
+- Neural Network (MLP)
+- Random Forest
+- Gradient Boosting
+
+#### Evaluation
+- Accuracy, precision, recall, F1-score, confusion matrix
+- Feature importance analysis for tree-based models
+- ROC curves and AUC for key models
+- 5-fold cross-validation and hyperparameter tuning via grid search
+
+### Results (Example)
+- All models achieve high accuracy (94–98%)
+- Decision Tree and Random Forest achieve 98% accuracy
+- Most important features include Polyuria, Polydipsia, sudden weight loss, Age
+
+### Usage
+The project is implemented in Python (Jupyter notebook or script).
+1. Ensure Python and required packages are installed (`numpy`, `pandas`, `scikit-learn`, `matplotlib`)
+2. Place `diabetes_data_upload.csv` in the working directory
+3. Run the notebook or script
