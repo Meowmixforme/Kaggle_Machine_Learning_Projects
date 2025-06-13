@@ -1,6 +1,6 @@
 # Kaggle Machine Learning Projects
 
-This repository contains various machine learning projects based on Kaggle datasets, implemented in different programming languages and frameworks. The first two are projects that I was originally going to use for my university module but were abandoned at the time due to their large scope.
+This repository contains various machine learning projects based on Kaggle (and other) datasets, implemented in different programming languages and frameworks. The first two are projects that I was originally going to use for my university module but were abandoned at the time due to their large scope.
 
 ## Project 1: Aviation Crash Analysis for the Past 100 Years
 
