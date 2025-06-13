@@ -362,3 +362,61 @@ This project demonstrates classical supervised machine learning techniques using
 3. Run the `iris_classification.py` script or use the code in a Jupyter notebook.
    - The script will automatically download the Iris dataset from the UCI repository.
 4. Review printed model evaluation reports and plots.
+
+
+## Project 7: SMS Spam Detection with NLTK and scikit-learn
+
+### Overview
+This project demonstrates the use of natural language processing (NLP) and classical machine learning algorithms to detect spam in SMS messages. The workflow includes data cleansing, feature engineering, model training using several classifiers, and ensemble methods, all implemented in Python with scikit-learn and NLTK.
+
+### Dataset
+- **Source:** [UCI SMS Spam Collection Dataset](https://archive.ics.uci.edu/ml/datasets/sms+spam+collection)
+- **Features:**
+  - Message label: "ham" (legitimate) or "spam"
+  - Text: raw SMS message content
+- **Size:** 5,572 messages
+
+### Implementation Details
+
+#### Data Exploration and Preprocessing
+- Inspection of dataset shape, class distribution, and sample messages
+- Conversion of class labels to binary (0 = ham, 1 = spam)
+- Text cleansing using regular expressions:
+  - Removal of email addresses, URLs, phone numbers, money symbols, and numbers
+  - Stripping of punctuation and extra whitespace
+  - Lowercasing of all text
+- Removal of English stop words
+- Stemming using the Porter stemmer
+
+#### Feature Engineering
+- Bag-of-words model created using tokenisation and frequency distribution
+- Selection of the 1,500 most common words as features
+- Feature extraction for each message using presence/absence of common words
+
+#### Dataset Preparation
+- Conversion of messages into feature-label pairs
+- Random shuffling and splitting: 75% training, 25% testing
+
+#### Model Training and Evaluation
+- Training of multiple classifiers using NLTK's scikit-learn wrapper:
+  - K-Nearest Neighbours
+  - Decision Tree
+  - Random Forest
+  - Logistic Regression
+  - Stochastic Gradient Descent (SGD) Classifier
+  - Multinomial Naive Bayes
+  - Support Vector Machine (linear kernel)
+- Evaluation of each classifier on the test set (accuracy reported)
+- Ensemble learning using a hard-voting classifier for improved performance
+
+#### Results
+- All models achieve high accuracy, with SVM linear and ensemble classifier exceeding 98%
+- Example confusion matrix for ensemble classifier:
+
+  |              | predicted ham | predicted spam |
+  |--------------|:------------:|:--------------:|
+  | actual ham   |     1197     |       2        |
+  | actual spam  |      31      |      163       |
+
+
+  
