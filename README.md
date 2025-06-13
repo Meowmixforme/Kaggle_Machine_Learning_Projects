@@ -165,7 +165,7 @@ This project classifies images of cats and dogs using transfer learning with Mob
 #### Tools and Libraries
 - **Python** (Jupyter/Colab)
 - **TensorFlow/Keras** for deep learning and transfer learning
-- **pandas**, **numpy**, **matplotlib**, **seaborn** for data handling and visualization
+- **pandas**, **numpy**, **matplotlib**, **seaborn** for data handling and visualisation
 - **scikit-learn** for evaluation metrics
 
 ### Usage
