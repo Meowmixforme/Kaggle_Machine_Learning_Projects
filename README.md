@@ -77,89 +77,6 @@ The project is implemented in R Markdown notebook format. To run the analysis:
 3. Open the R Markdown notebook in RStudio
 4. Run all chunks sequentially
 
-## Project 2: Medical Appointment No-Shows in Brazil
-
-### Overview
-This project analyses a dataset of medical appointments in Brazil to predict patient no-shows using advanced machine learning techniques. The implementation uses R for data processing, feature engineering, and ensemble model development. The primary objective is to identify factors that contribute to appointment no-shows and develop a predictive model that healthcare facilities can use to reduce missed appointments.
-
-### Dataset
-The dataset contains over 100,000 medical appointments from the Brazilian public healthcare system including:
-- Patient demographic information (age, gender)
-- Appointment details (scheduling date, appointment date)
-- Medical conditions (hypertension, diabetes, alcoholism)
-- Social determinants (neighbourhood, welfare benefits)
-- Communication factors (SMS reminders)
-
-### Implementation Details
-The analysis follows a comprehensive machine learning workflow:
-
-**Data Cleansing**
-- Treatment of missing values
-- Date and time format standardisation
-- Removal of extreme outliers (ages > 100)
-- Correction of inconsistent categorical values
-
-**Feature Engineering**
-- Creation of waiting days variable between scheduling and appointment
-- Detailed waiting time categories (Same day to Over month)
-- Time-of-day appointment categories
-- NHS age group classification
-- Neighbourhood risk categorisation based on historical no-show rates
-- Health condition combinations and interactions
-- Seasonal and day-of-week patterns
-
-**Advanced Class Balancing**
-- Random upsampling of minority class (no-shows)
-- Equal representation of show/no-show appointments in training data
-- Preservation of original distribution in testing data
-
-**Machine Learning Models**
-- XGBoost implementation
-- Random Forest classification
-- Logistic Regression
-- Ensemble model combining all three approaches
-- Cross-validation and hyperparameter tuning
-
-**Threshold Optimisation**
-- F1-score based threshold determination
-- Adjustment for class imbalance in predictions
-- Precision-recall trade-off analysis
-
-**Model Evaluation**
-- ROC curve analysis with AUC metrics
-- Confusion matrix assessment
-- Feature importance ranking
-- Classification performance across patient demographics
-
-### Key Findings
-- Waiting time is the strongest predictor of appointment no-shows
-- SMS reminders significantly reduce no-show probability
-- Young patients with long waiting times have higher no-show rates
-- Neighbourhood characteristics influence attendance patterns
-- Health conditions impact attendance in complex ways
-- The ensemble model achieves superior performance compared to individual models
-
-### Tools and Libraries
-- **R Language**: Primary implementation
-- **Data Manipulation**: dplyr, tidyr, lubridate
-- **Machine Learning**: caret, xgboost, randomForest
-- **Model Evaluation**: pROC, confusionMatrix
-- **Visualisation**: ggplot2
-
-### Future Work
-- Integration of distance/travel time to medical facility
-- Inclusion of weather data on appointment days
-- Text message content analysis for effectiveness
-- Development of an early warning system for high-risk no-shows
-- Cost-benefit analysis of intervention strategies
-
-### Usage
-The project is implemented in R script format. To run the analysis:
-1. Clone this repository
-2. Ensure R and required packages are installed
-3. Run the improved_medical_noshow_prediction.R script
-4. Model outputs will be saved in the project directory
-
 ## Project 3: Diabetes Risk Prediction
 
 ### Overview
@@ -176,12 +93,12 @@ This project predicts diabetes risk using a range of classical machine learning 
 - Encode categorical variables and binary symptoms as 0/1
 - Encode target variable
 - Stratified train-test split (70/30)
-- Feature standardization
+- Feature standardisation
 
 #### Model Training
 Trained and evaluated the following classifiers:
 - Logistic Regression
-- K-Nearest Neighbors
+- K-Nearest Neighbours
 - Decision Tree
 - Support Vector Machine (Linear and RBF kernels)
 - Neural Network (MLP)
