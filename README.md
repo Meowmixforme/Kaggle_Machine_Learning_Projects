@@ -712,3 +712,74 @@ Sample prediction for a test game:
 
 
 
+## Project 12: Credit Card Fraud Detection with Unsupervised Outlier Detection
+
+### Overview
+This project demonstrates the use of unsupervised machine learning algorithms for detecting credit card fraud in a highly imbalanced dataset. The workflow includes data exploration, visualisation, and application of anomaly detection models—Isolation Forest and Local Outlier Factor—on a sample of the [Kaggle Credit Card Fraud Detection dataset](https://www.kaggle.com/mlg-ulb/creditcardfraud).
+
+### Dataset
+- **Source:** [Kaggle - Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)
+- **Features:**  
+  - V1–V28: Principal components derived from a PCA transformation of raw transaction features (anonymised)
+  - `Time`: Seconds elapsed between each transaction and the first transaction
+  - `Amount`: Transaction amount
+  - `Class`: Target variable (0 = legitimate, 1 = fraud)
+- **Size:** 284,807 rows × 31 columns
+
+### Implementation Details
+
+**Data Exploration and Visualisation**
+- Statistical summary and shape inspection
+- Histograms of all features to visualise distributions
+- Correlation heatmap to identify relationships between features
+
+**Class Imbalance Handling**
+- Fraud cases are extremely rare: typically less than 0.2% of the data
+- The dataset is subsampled (10%) for faster computation during development
+
+**Anomaly Detection Algorithms**
+- **Isolation Forest**
+  - Designed for anomaly detection in high-dimensional datasets
+  - Learns to isolate outliers by random partitioning
+- **Local Outlier Factor (LOF)**
+  - Measures local deviation of a data point with respect to its neighbours
+  - Points with substantially lower density than their neighbours are considered outliers
+
+**Evaluation Metrics**
+- Accuracy, precision, recall, and F1-score, reported for both classes
+- Number of prediction errors (misclassifications) for each method
+
+### Example Results
+
+| Model                | Errors | Accuracy | Fraud Precision | Fraud Recall | Fraud F1 |
+|----------------------|--------|----------|-----------------|-------------|----------|
+| Isolation Forest     |   71   | 99.75%   |     0.28        |   0.29      |  0.28    |
+| Local Outlier Factor |   97   | 99.66%   |     0.02        |   0.02      |  0.02    |
+
+Note: High accuracy is due to class imbalance; F1-score for the fraud class is a more meaningful metric.
+
+### Tools and Libraries
+- **Python**: Jupyter/Colab notebook or script
+- **Data Manipulation**: numpy, pandas
+- **Visualisation**: matplotlib, seaborn
+- **Machine Learning**: scikit-learn
+- **Scientific Computing**: scipy
+
+### Usage
+
+1. Ensure Python and required packages are installed:
+   - `numpy`, `pandas`, `matplotlib`, `seaborn`, `scikit-learn`, `scipy`
+2. Download [creditcard.csv](https://www.kaggle.com/mlg-ulb/creditcardfraud) and place it in your working directory.
+3. Run the script or notebook.
+   - The code will sample, visualise, and evaluate anomaly detection models.
+4. Review printed classification reports and accuracy metrics.
+
+### Future Work
+- Apply advanced resampling techniques (SMOTE, ADASYN) for better class balance
+- Experiment with supervised learning algorithms (Random Forest, XGBoost, Neural Networks)
+- Use cross-validation for more robust evaluation
+- Tune the hyperparameters of anomaly detection models
+- Deploy as a real-time fraud detection microservice
+
+
+
