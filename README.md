@@ -486,3 +486,70 @@ This project applies unsupervised machine learning to the MNIST handwritten digi
 
 
 
+## Project 9: Image Classification on CIFAR-10 with the All-CNN
+
+### Overview
+This project demonstrates image classification using the CIFAR-10 dataset and the All Convolutional Neural Network (All-CNN) architecture, implemented in Keras. The All-CNN is a deep convolutional model that replaces traditional fully connected layers with 1×1 and global average pooling layers, enabling high accuracy with fewer parameters.
+
+### Dataset
+- **Source:** [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)
+- **Features:** 32 × 32 colour images, 3 channels (RGB)
+- **Target:** 10 object classes (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck)
+- **Size:** 50,000 training images, 10,000 test images
+
+### Implementation Details
+
+**Data Preparation**
+- Load CIFAR-10 dataset via Keras.
+- Visualise sample images as a 3×3 grid.
+- Normalise pixel values to the range [0, 1].
+- Convert class labels to one-hot vectors.
+
+**Model: All-CNN Architecture**
+- Stacks of 3×3 and 1×1 convolutional layers with ReLU activation and Dropout for regularisation.
+- No fully connected layers; final classification via global average pooling and softmax.
+- ~1.37 million trainable parameters.
+
+**Training**
+- Optimiser: SGD with momentum and Nesterov acceleration.
+- Loss function: Categorical cross-entropy.
+- Trained for up to 350 epochs (early stopping recommended in practice).
+- Optionally, load pretrained weights for rapid evaluation.
+
+**Evaluation**
+- Model accuracy assessed on the CIFAR-10 test set.
+- Typical accuracy with pretrained weights: ~91%.
+- Class label mapping provided for easy interpretation of predictions.
+
+**Prediction and Visualisation**
+- Generate predictions on a batch of test images.
+- Display a 3×3 grid of images with predicted and actual labels for qualitative assessment.
+
+### Example Results
+
+| Metric     | Value      |
+|------------|------------|
+| Test Accuracy | 0.91   |
+| Classes      | airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck |
+
+Example prediction (for batch of 9 images):  
+Each subplot shows model's predicted class and actual class for visual inspection.
+
+### Tools and Libraries
+- **Python**: Jupyter/Colab notebook or script
+- **Deep Learning**: Keras, TensorFlow backend
+- **Data Handling**: numpy, PIL
+- **Visualisation**: matplotlib
+
+### Usage
+
+1. Ensure Python and required packages are installed:
+   - `keras`, `tensorflow`, `numpy`, `matplotlib`, `PIL`
+2. Download or clone this repository.
+3. (Optional) Download pretrained weights file (`all_cnn_weights_0.9088_0.4994.hdf5`) for rapid evaluation.
+4. Run the script or notebook.
+   - The code will load data, train or load the model, and report results.
+5. Review printed accuracy and the image grid of predictions.
+
+
+
