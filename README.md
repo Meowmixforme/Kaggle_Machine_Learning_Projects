@@ -117,7 +117,7 @@ Trained and evaluated the following classifiers:
 - Most important features include Polyuria, Polydipsia, sudden weight loss, Age
 
 ### Usage
-The project is implemented in Python (Jupyter notebook or script).
+The project is implemented in Python (Jupyter/Colab notebook or script).
 1. Ensure Python and required packages are installed (`numpy`, `pandas`, `scikit-learn`, `matplotlib`)
 2. Place `diabetes_data_upload.csv` in the working directory
 3. Run the notebook or script
