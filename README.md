@@ -267,3 +267,40 @@ This project classifies images of cats and dogs using transfer learning with Mob
 - Deploy the model as a web or mobile application.
 - Test on user-supplied images for real-world validation.
 - Explore interpretability methods (Grad-CAM, SHAP) for model explanations.
+
+
+## Project 5: Image Super-Resolution with SRCNN (Keras)
+
+This project demonstrates image super-resolution using a Super-Resolution Convolutional Neural Network (SRCNN) implemented in Keras with TensorFlow backend. The workflow includes image degradation, quality assessment (PSNR, MSE, SSIM), SRCNN model building, and evaluation.
+
+- **Dataset:** Example images (e.g., baboon, lenna, etc.)
+- **Image Preparation:** Images are artificially degraded by downsampling and upsampling.
+- **Quality Metrics:** PSNR, MSE, and SSIM are computed before and after super-resolution.
+- **SRCNN Model:** Custom SRCNN with three convolutional layers, trained weights are loaded (`3051crop_weight_200.h5`).
+- **Prediction:** The model reconstructs high-resolution images from degraded versions; results are evaluated and visualized.
+- **Libraries:** Python, Keras, TensorFlow, NumPy, OpenCV, scikit-image, matplotlib.
+
+#### Usage
+
+1. Place original images in `source/` folder.
+2. Run the script to generate degraded images in `images/`.
+3. Use the `predict` function to upscale and evaluate any image.
+4. Example code and full pipeline in `srcnn_super_resolution.py`.
+
+#### Key Files
+
+- `srcnn_super_resolution.py` — Main pipeline and model code.
+- `3051crop_weight_200.h5` — Pretrained SRCNN weights.
+- `source/` — Folder for original high-res images.
+- `images/` — Folder for degraded images.
+
+#### Results
+
+Sample metrics for `flowers.bmp`:
+- Degraded Image: PSNR 27.25, MSE 367.56, SSIM 0.87
+- Reconstructed Image: PSNR 29.66, MSE 210.95, SSIM 0.89
+
+#### References
+
+- [SRCNN Paper and Project Page](https://mmlab.ie.cuhk.edu.hk/projects/SRCNN.html)
+- [Keras SRCNN Implementation](https://github.com/MarkPrecursor/SRCNN-keras)
