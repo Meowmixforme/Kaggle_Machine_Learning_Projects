@@ -79,7 +79,7 @@ The project is implemented in R Markdown notebook format. To run the analysis:
 
 
 
-## Project 2: Medical Appointment No-Shows in BrazilAdd commentMore actions
+## Project 2: Medical Appointment No-Shows in BrazilAdd
 
 ### Overview
 This project analyses a dataset of medical appointments in Brazil to predict patient no-shows using advanced machine learning techniques. The implementation uses R for data processing, feature engineering, and ensemble model development. The primary objective is to identify factors that contribute to appointment no-shows and develop a predictive model that healthcare facilities can use to reduce missed appointments.
