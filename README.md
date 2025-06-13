@@ -420,3 +420,69 @@ This project demonstrates the use of natural language processing (NLP) and class
 
 
   
+## Project 8: Unsupervised Clustering of Handwritten Digits (MNIST) with K-Means
+
+### Overview
+This project applies unsupervised machine learning to the MNIST handwritten digits dataset, using the MiniBatchKMeans algorithm to discover natural groupings in the images. The objective is to explore how well clustering can recover digit classes without using labels, and to visualise the cluster centroids as representative digit images.
+
+### Dataset
+- **Source:** [MNIST Handwritten Digits](http://yann.lecun.com/exdb/mnist/)
+- **Features:** 28 × 28 greyscale images of handwritten digits (0–9)
+- **Target:** Digit class (used only for evaluation)
+- **Size:** 60,000 training images, 10,000 test images
+
+### Implementation Details
+
+**Data Preparation**
+- Load the MNIST dataset via Keras.
+- Flatten images from 28 × 28 to 784-dimensional vectors.
+- Normalise pixel values to the range [0, 1].
+
+**Clustering**
+- Use MiniBatchKMeans with various numbers of clusters (10–256).
+- Fit the model to the training data.
+- For each configuration:
+  - Evaluate inertia, homogeneity, and clustering accuracy (by inferring cluster labels).
+  - Test on the held-out test set for final accuracy.
+
+**Cluster Label Inference**
+- Assign the most probable digit label to each cluster using majority voting within each cluster.
+- Map cluster assignments to inferred digit labels for accuracy calculation.
+
+**Visualisation of Cluster Centroids**
+- Reshape cluster centroids back to 28 × 28 images.
+- Display the centroids using matplotlib to observe typical digit patterns discovered by the clustering.
+
+**Key Functions**
+- `infer_cluster_labels`: Associates each cluster with a digit label based on the majority of ground-truth labels within the cluster.
+- `infer_data_labels`: Maps cluster assignments to inferred labels for evaluation.
+
+### Results
+- With 256 clusters, K-Means achieves approximately 90% accuracy on the MNIST test set (without using labels for training).
+- Visualised centroids display clear digit-like patterns, showing that K-Means can discover meaningful features in the data.
+
+### Example Results
+
+| Number of Clusters | Homogeneity | Accuracy (Train) | Accuracy (Test) |
+|--------------------|-------------|------------------|-----------------|
+| 10                 | 0.49        | 0.62             | –               |
+| 36                 | 0.67        | 0.75             | –               |
+| 256                | 0.84        | 0.90             | 0.90            |
+
+### Tools and Libraries
+- **Python**: Jupyter/Colab notebook or script
+- **Machine Learning**: scikit-learn
+- **Data Processing**: numpy
+- **Visualisation**: matplotlib
+- **Dataset Loading**: keras
+
+### Usage
+
+1. Ensure Python and required packages are installed:
+   - `numpy`, `matplotlib`, `scikit-learn`, `keras`
+2. Run the Python script or Jupyter notebook.
+   - The script will download MNIST if needed, perform clustering, and display visualisations and metrics.
+3. Review the printed evaluation metrics and the subplot grid of cluster centroids.
+
+
+
