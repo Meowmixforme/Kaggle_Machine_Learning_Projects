@@ -121,3 +121,62 @@ The project is implemented in Python (Jupyter/Colab notebook or script).
 1. Ensure Python and required packages are installed (`numpy`, `pandas`, `scikit-learn`, `matplotlib`)
 2. Place `diabetes_data_upload.csv` in the working directory
 3. Run the notebook or script
+
+
+## Project 4: Cats vs Dogs Image Classification (Transfer Learning with MobileNetV2)
+
+### Overview
+This project classifies images of cats and dogs using transfer learning with MobileNetV2, leveraging a Kaggle dataset. The workflow demonstrates the use of pretrained convolutional neural networks, data augmentation, and fine-tuning to achieve high accuracy on a small dataset.
+
+### Dataset
+- [Kaggle Cats and Dogs Image Classification Dataset](https://www.kaggle.com/datasets/samuelcortinhas/cats-and-dogs-image-classification)
+- Contains separate folders for training and testing, with images labeled as "cats" or "dogs".
+
+### Implementation Details
+
+#### Data Preparation
+- Automatic download and extraction of the dataset from Kaggle.
+- Construction of pandas DataFrames for training, validation, and test splits.
+- Data augmentation (rotation, shifts, flips) applied to the training set.
+- Images resized to 224x224 and normalized.
+
+#### Model Architecture
+- **Base:** Pretrained MobileNetV2 (ImageNet weights, base frozen for initial training)
+- **Top:** GlobalAveragePooling2D + Dense layer with sigmoid activation
+
+#### Training Workflow
+1. **Initial Training:**  
+   - Only the custom classification head is trained, MobileNetV2 base is frozen.
+   - Early stopping and learning rate reduction callbacks.
+2. **Fine-tuning:**  
+   - The last 20 layers of MobileNetV2 are unfrozen and trained at a lower learning rate.
+   - Further early stopping to prevent overfitting.
+
+#### Evaluation
+- Model evaluated on a held-out test set.
+- Performance metrics: accuracy, precision, recall, F1-score, confusion matrix (per class).
+- Achieved ~94% accuracy on the test set.
+
+#### Key Results (Example)
+- **Test accuracy:** 94%
+- **Cat:** precision 1.00, recall 0.87, F1 0.93
+- **Dog:** precision 0.89, recall 1.00, F1 0.94
+
+#### Tools and Libraries
+- **Python** (Jupyter/Colab)
+- **TensorFlow/Keras** for deep learning and transfer learning
+- **pandas**, **numpy**, **matplotlib**, **seaborn** for data handling and visualization
+- **scikit-learn** for evaluation metrics
+
+### Usage
+1. Download or clone this repository.
+2. Obtain the [Kaggle dataset](https://www.kaggle.com/datasets/samuelcortinhas/cats-and-dogs-image-classification) and your Kaggle API key (`kaggle.json`).
+3. Run the provided Colab notebook or Python script.  
+   - The code will handle dataset download, extraction, preprocessing, training, and evaluation.
+4. The trained model is saved in Keras format (`catdog_classifier_mobilenetv2.keras`).
+
+### Future Work
+- Experiment with alternative pretrained models (e.g., EfficientNet, ResNet).
+- Deploy the model as a web or mobile application.
+- Test on user-supplied images for real-world validation.
+- Explore interpretability methods (Grad-CAM, SHAP) for model explanations.
