@@ -77,6 +77,8 @@ The project is implemented in R Markdown notebook format. To run the analysis:
 3. Open the R Markdown notebook in RStudio
 4. Run all chunks sequentially
 
+
+
 ## Project 2: Medical Appointment No-Shows in BrazilAdd commentMore actions
 
 ### Overview
