@@ -304,3 +304,61 @@ Sample metrics for `flowers.bmp`:
 
 - [SRCNN Paper and Project Page](https://mmlab.ie.cuhk.edu.hk/projects/SRCNN.html)
 - [Keras SRCNN Implementation](https://github.com/MarkPrecursor/SRCNN-keras)
+
+
+## Project 6: Iris Dataset Classification with Classical Machine Learning
+
+### Overview
+This project demonstrates classical supervised machine learning techniques using the renowned Iris dataset. The objective is to classify iris flowers into three species (Iris-setosa, Iris-versicolor, Iris-virginica) based on their sepal and petal measurements. The workflow includes exploratory data analysis, visualisation, model training, and evaluation using several algorithms.
+
+### Dataset
+- **Source:** [UCI Machine Learning Repository - Iris Data Set](https://archive.ics.uci.edu/ml/datasets/iris)
+- **Features:**
+  - Sepal length (cm)
+  - Sepal width (cm)
+  - Petal length (cm)
+  - Petal width (cm)
+- **Target:** Iris species (Setosa, Versicolor, Virginica)
+- **Size:** 150 samples (50 per class)
+
+### Implementation Details
+
+#### Data Exploration and Visualisation
+- Summary statistics and distribution plots for all features
+- Class distribution analysis
+- Histograms and scatter plot matrix to visualise relationships between variables
+
+#### Model Training and Evaluation
+- Data split: 80% training, 20% validation (stratified)
+- Models trained:
+  - Logistic Regression
+  - K-Nearest Neighbours (KNN)
+  - Support Vector Machine (SVM, linear kernel)
+- 10-fold cross-validation for model selection and performance estimation
+- Final evaluation on the validation set
+
+#### Evaluation Metrics
+- Accuracy
+- Precision, Recall, F1-score (per class)
+- Confusion matrix
+- Model comparison based on average cross-validation accuracy
+
+### Example Results
+- All models achieve high accuracy (87–90%) on the validation set
+- Setosa class is always perfectly classified; most errors are between Versicolor and Virginica
+- KNN achieves the highest validation accuracy in the sample run
+
+### Tools and Libraries
+- **Python**: Primary implementation (Jupyter/Colab notebook or script)
+- **Data Manipulation**: pandas, numpy
+- **Visualisation**: matplotlib, pandas.plotting
+- **Machine Learning**: scikit-learn
+
+### Usage
+
+1. Ensure Python and required packages are installed:
+   - `pandas`, `numpy`, `matplotlib`, `scikit-learn`
+2. Download or clone this repository.
+3. Run the `iris_classification.py` script or use the code in a Jupyter notebook.
+   - The script will automatically download the Iris dataset from the UCI repository.
+4. Review printed model evaluation reports and plots.
