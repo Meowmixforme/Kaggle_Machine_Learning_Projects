@@ -636,7 +636,7 @@ This project explores fundamental natural language processing (NLP) techniques u
 This project applies exploratory data analysis and machine learning techniques to a dataset of board games to predict their average ratings. The workflow includes data cleansing, feature engineering, visualisation, and the use of linear regression and random forest models for regression tasks.
 
 ### Dataset
-- **Source:** [Kaggle - Board Games](https://www.kaggle.com/datasets/andrewmvd/board-games)
+- **Source:** [Board Games](https://github.com/howdydoody123/scrapers/blob/master/boardgamegeek/games.csv)
 - **Features:**  
   - Game metadata (id, type, name, year published, player counts, playtime, min age)
   - Community statistics (users rated, average rating, Bayes average rating, number of owners, traders, wanters, wishers, comments, weight ratings)
@@ -699,7 +699,7 @@ Sample prediction for a test game:
 
 1. Ensure Python and required packages are installed:
    - `pandas`, `matplotlib`, `seaborn`, `scikit-learn`
-2. Download the dataset (`games.csv`) from [Kaggle - Board Games](https://www.kaggle.com/datasets/andrewmvd/board-games).
+2. Download the dataset (`games.csv`) from [Board Games](https://github.com/howdydoody123/scrapers/blob/master/boardgamegeek/games.csv).
 3. Run the script or notebook.
    - The code will load, clean, visualise, and model the data.
 4. Review printed mean squared errors, sample predictions, and displayed plots.
