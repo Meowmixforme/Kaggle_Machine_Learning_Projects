@@ -712,74 +712,92 @@ Sample prediction for a test game:
 
 
 
-## Project 12: Credit Card Fraud Detection with Unsupervised Outlier Detection
+## Project 12: # Credit Card Default Prediction with SMOTE
 
-### Overview
-This project demonstrates the use of unsupervised machine learning algorithms for detecting credit card fraud in a highly imbalanced dataset. The workflow includes data exploration, visualisation, and application of anomaly detection models—Isolation Forest and Local Outlier Factor—on a sample of the [Kaggle Credit Card Fraud Detection dataset](https://www.kaggle.com/mlg-ulb/creditcardfraud).
+## Overview
+This project demonstrates how to predict credit card defaults using supervised machine learning. The workflow handles class imbalance using Synthetic Minority Over-sampling Technique (SMOTE) and includes data preprocessing, feature engineering, and model comparison across several algorithms.
 
-### Dataset
-- **Source:** [Kaggle - Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)
-- **Features:**  
-  - V1–V28: Principal components derived from a PCA transformation of raw transaction features (anonymised)
-  - `Time`: Seconds elapsed between each transaction and the first transaction
-  - `Amount`: Transaction amount
-  - `Class`: Target variable (0 = legitimate, 1 = fraud)
-- **Size:** 284,807 rows × 31 columns
+## Dataset
+- **Source:** UCI Credit Card Default Dataset
+- **Features:**
+  - Demographic information (SEX, EDUCATION, MARRIAGE, AGE)
+  - Credit history (LIMIT_BAL)
+  - Payment history (PAY_0 to PAY_6)
+  - Bill statements (BILL_AMT1 to BILL_AMT6) 
+  - Previous payments (PAY_AMT1 to PAY_AMT6)
+  - DEFAULT: Target variable (1 = default, 0 = no default)
+- **Size:** 30,000 clients
 
-### Implementation Details
+## Implementation Details
 
-**Data Exploration and Visualisation**
-- Statistical summary and shape inspection
-- Histograms of all features to visualise distributions
-- Correlation heatmap to identify relationships between features
+### Data Preprocessing
+- Statistical analysis and visualisation of features
+- Handling of categorical variables through one-hot encoding
+- Replacement of special values in EDUCATION and MARRIAGE columns
+- Feature scaling with StandardScaler
 
-**Class Imbalance Handling**
-- Fraud cases are extremely rare: typically less than 0.2% of the data
-- The dataset is subsampled (10%) for faster computation during development
+### Feature Engineering
+- Utilisation ratio (bill amount to credit limit)
+- Payment to bill ratio
+- Delay history (count of months with payment delays)
+- Maximum delay indicator
+- Average bill and payment amounts
+- Bill trend analysis
+- Payment consistency metrics
 
-**Anomaly Detection Algorithms**
-- **Isolation Forest**
-  - Designed for anomaly detection in high-dimensional datasets
-  - Learns to isolate outliers by random partitioning
-- **Local Outlier Factor (LOF)**
-  - Measures local deviation of a data point with respect to its neighbours
-  - Points with substantially lower density than their neighbours are considered outliers
+### Class Imbalance Handling
+- The positive class (default) represents only 22.12% of the data
+- SMOTE applied to balance the training data
+- Test data kept in original distribution to maintain realistic evaluation
 
-**Evaluation Metrics**
-- Accuracy, precision, recall, and F1-score, reported for both classes
-- Number of prediction errors (misclassifications) for each method
+### Machine Learning Models
+- **Logistic Regression**
+- **Random Forest**
+- **XGBoost**
+- **Linear SVM**
+- **CatBoost**
 
-### Example Results
+### Evaluation Metrics
+- Accuracy, precision, recall, and F1-score
+- ROC curves and AUC scores
+- Cross-validation results for model stability
+- Threshold optimisation for precision-recall tradeoff
 
-| Model                | Errors | Accuracy | Fraud Precision | Fraud Recall | Fraud F1 |
-|----------------------|--------|----------|-----------------|-------------|----------|
-| Isolation Forest     |   71   | 99.75%   |     0.28        |   0.29      |  0.28    |
-| Local Outlier Factor |   97   | 99.66%   |     0.02        |   0.02      |  0.02    |
+## Results
 
-Note: High accuracy is due to class imbalance; F1-score for the fraud class is a more meaningful metric.
+| Model | Accuracy | Precision | Recall | F1 Score |
+|-------|----------|-----------|--------|----------|
+| Random Forest | 78.16% | 50.56% | 56.65% | 53.43% |
+| CatBoost | 77.99% | 50.25% | 51.38% | 50.81% |
+| XGBoost | 78.12% | 50.56% | 49.82% | 50.19% |
+| Linear SVM | 72.67% | 41.38% | 56.55% | 47.79% |
+| Logistic Regression | 71.49% | 39.94% | 57.36% | 47.09% |
 
-### Tools and Libraries
-- **Python**: Jupyter/Colab notebook or script
+- **Best Model:** Random Forest with an F1 score of 53.43%
+- **Optimal Threshold:** 0.4867 for improved precision-recall balance
+
+## Tools and Libraries
+- **Python**: Jupyter/Colab notebook
 - **Data Manipulation**: numpy, pandas
 - **Visualisation**: matplotlib, seaborn
-- **Machine Learning**: scikit-learn
-- **Scientific Computing**: scipy
+- **Machine Learning**: scikit-learn, XGBoost, CatBoost
+- **Imbalance Handling**: imbalanced-learn (SMOTE)
 
-### Usage
-
+## Usage
 1. Ensure Python and required packages are installed:
-   - `numpy`, `pandas`, `matplotlib`, `seaborn`, `scikit-learn`, `scipy`
-2. Download [creditcard.csv](https://www.kaggle.com/mlg-ulb/creditcardfraud) and place it in your working directory.
-3. Run the script or notebook.
-   - The code will sample, visualise, and evaluate anomaly detection models.
-4. Review printed classification reports and accuracy metrics.
+2. Download the UCI Credit Card dataset
+3. Run the notebook to:
+- Preprocess data and engineer features
+- Apply SMOTE to balance training data
+- Train and evaluate multiple models
+- Visualise results and optimise thresholds
 
-### Future Work
-- Apply advanced resampling techniques (SMOTE, ADASYN) for better class balance
-- Experiment with supervised learning algorithms (Random Forest, XGBoost, Neural Networks)
-- Use cross-validation for more robust evaluation
-- Tune the hyperparameters of anomaly detection models
-- Deploy as a real-time fraud detection microservice
+## Future Work
+- Further hyperparameter tuning for improved performance
+- Cost-sensitive learning approaches
+- Additional feature engineering based on domain knowledge
+- Ensemble methods combining multiple model predictions
+- Deploy as a real-time default prediction service
 
 
 
