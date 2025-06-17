@@ -801,3 +801,85 @@ This project demonstrates how to predict credit card defaults using supervised m
 
 
 
+## Project 13: Age Prediction from Facial Images
+
+## Overview
+This project implements a deep learning model to predict a person's age from their facial image. Using transfer learning with MobileNetV2 and fine-tuning techniques, the model achieves reasonable accuracy in estimating ages between 20 and 50 years.
+
+## Dataset
+- **Source:** Kaggle dataset by MariaFrenti ([age-prediction](https://www.kaggle.com/datasets/mariafrenti/age-prediction))
+- **Structure:**
+  - Age-labelled facial images organised by age groups (20–50)
+  - 40,440 images across 31 different age categories
+  - Well-distributed dataset with approximately 1,200–1,600 images per age
+- **Sample Size:** 10,000 images used for model training (to manage computational resources)
+- **Split:** 70% training, 15% validation, 15% test
+
+## Implementation Details
+
+### Data Preprocessing
+- Image resizing to **120×120 pixels**
+- RGB normalisation (pixel values scaled to 0–1)
+- Data augmentation for the training set:
+  - Rotation (±20°)
+  - Width/height shifts (±20%)
+  - Shear and zoom transformations (20%)
+  - Horizontal flipping
+
+### Model Architecture
+- **Base Model:** MobileNetV2 (pre-trained on ImageNet)
+- **Custom Top Layers:**
+  - Global Average Pooling
+  - Dense (512 units, ReLU) + Batch Normalisation + Dropout (50%)
+  - Dense (256 units, ReLU) + Batch Normalisation + Dropout (30%)
+  - Output: 1 neuron (linear activation)
+
+### Training Approach
+- **Two-Phase Training:**
+  - Initial training with frozen base model (20 epochs)
+  - Fine-tuning by unfreezing the top 30 layers (20 epochs)
+- **Optimisation:**
+  - Adam optimiser (learning rate 0.001 initially, 1e-5 for fine-tuning)
+  - Mean Squared Error loss
+  - Early stopping (patience: 10/5 epochs)
+  - ReduceLROnPlateau (factor: 0.2, patience: 5 epochs)
+
+## Evaluation Metrics
+- Mean Absolute Error (MAE)
+- Root Mean Square Error (RMSE)
+- R² Score
+- Age group-specific error analysis
+
+## Results
+
+| Metric | Initial Model | Fine-tuned Model | Improvement |
+|--------|--------------|------------------|-------------|
+| **MAE** | 6.97 years | 6.88 years | 0.09 years |
+| **RMSE** | 8.37 years | 8.27 years | 0.10 years |
+| **R²** | 0.1130 | 0.1351 | +0.0221 |
+
+- **Age-Specific Performance:**
+  - Best for ages 30–40 (MAE: ~3.6–3.9 years)
+  - Reduced accuracy for 20–25 and 45–50 (MAE: ~9.9–10.2 years)
+- **Baseline Comparison:** 5.82% improvement over null model (predicting mean age)
+
+## Tools and Libraries
+- **Deep Learning:** TensorFlow, Keras
+- **Data Processing:** pandas, numpy
+- **Image Processing:** TensorFlow preprocessing
+- **Visualisation:** matplotlib
+- **Model Evaluation:** scikit-learn metrics
+
+## Technical Challenges
+- Limited input resolution (120×120) to balance memory usage and detail
+- Trade-off between model complexity and computational resources
+- Age bias in prediction accuracy across different age groups
+
+## Future Work
+- Face detection and alignment preprocessing for improved accuracy
+- Age-group specific models for better performance
+- Exploring EfficientNet, Vision Transformers
+- Incorporating facial features and landmarks
+- Ensemble methods combining multiple prediction approaches
+
+
