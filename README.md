@@ -636,7 +636,7 @@ This project explores fundamental natural language processing (NLP) techniques u
 This project applies exploratory data analysis and machine learning techniques to a dataset of board games to predict their average ratings. The workflow includes data cleansing, feature engineering, visualisation, and the use of linear regression and random forest models for regression tasks.
 
 ### Dataset
-- **Source:** [Kaggle - Board Game Geek Data](https://www.kaggle.com/datasets/evangower/board-game-data)
+- **Source:** [Board Games](https://github.com/howdydoody123/scrapers/blob/master/boardgamegeek/games.csv)
 - **Features:**  
   - Game metadata (id, type, name, year published, player counts, playtime, min age)
   - Community statistics (users rated, average rating, Bayes average rating, number of owners, traders, wanters, wishers, comments, weight ratings)
@@ -699,7 +699,7 @@ Sample prediction for a test game:
 
 1. Ensure Python and required packages are installed:
    - `pandas`, `matplotlib`, `seaborn`, `scikit-learn`
-2. Download the dataset (`games.csv`) from [Kaggle Board Game Data](https://www.kaggle.com/datasets/evangower/board-game-data).
+2. Download the dataset (`games.csv`) from [Board Games](https://github.com/howdydoody123/scrapers/blob/master/boardgamegeek/games.csv).
 3. Run the script or notebook.
    - The code will load, clean, visualise, and model the data.
 4. Review printed mean squared errors, sample predictions, and displayed plots.
@@ -712,74 +712,174 @@ Sample prediction for a test game:
 
 
 
-## Project 12: Credit Card Fraud Detection with Unsupervised Outlier Detection
+## Project 12: # Credit Card Default Prediction with SMOTE
 
-### Overview
-This project demonstrates the use of unsupervised machine learning algorithms for detecting credit card fraud in a highly imbalanced dataset. The workflow includes data exploration, visualisation, and application of anomaly detection models—Isolation Forest and Local Outlier Factor—on a sample of the [Kaggle Credit Card Fraud Detection dataset](https://www.kaggle.com/mlg-ulb/creditcardfraud).
+## Overview
+This project demonstrates how to predict credit card defaults using supervised machine learning. The workflow handles class imbalance using Synthetic Minority Over-sampling Technique (SMOTE) and includes data preprocessing, feature engineering, and model comparison across several algorithms.
 
-### Dataset
-- **Source:** [Kaggle - Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)
-- **Features:**  
-  - V1–V28: Principal components derived from a PCA transformation of raw transaction features (anonymised)
-  - `Time`: Seconds elapsed between each transaction and the first transaction
-  - `Amount`: Transaction amount
-  - `Class`: Target variable (0 = legitimate, 1 = fraud)
-- **Size:** 284,807 rows × 31 columns
+## Dataset
+- **Source:** UCI Credit Card Default Dataset
+- **Features:**
+  - Demographic information (SEX, EDUCATION, MARRIAGE, AGE)
+  - Credit history (LIMIT_BAL)
+  - Payment history (PAY_0 to PAY_6)
+  - Bill statements (BILL_AMT1 to BILL_AMT6) 
+  - Previous payments (PAY_AMT1 to PAY_AMT6)
+  - DEFAULT: Target variable (1 = default, 0 = no default)
+- **Size:** 30,000 clients
 
-### Implementation Details
+## Implementation Details
 
-**Data Exploration and Visualisation**
-- Statistical summary and shape inspection
-- Histograms of all features to visualise distributions
-- Correlation heatmap to identify relationships between features
+### Data Preprocessing
+- Statistical analysis and visualisation of features
+- Handling of categorical variables through one-hot encoding
+- Replacement of special values in EDUCATION and MARRIAGE columns
+- Feature scaling with StandardScaler
 
-**Class Imbalance Handling**
-- Fraud cases are extremely rare: typically less than 0.2% of the data
-- The dataset is subsampled (10%) for faster computation during development
+### Feature Engineering
+- Utilisation ratio (bill amount to credit limit)
+- Payment to bill ratio
+- Delay history (count of months with payment delays)
+- Maximum delay indicator
+- Average bill and payment amounts
+- Bill trend analysis
+- Payment consistency metrics
 
-**Anomaly Detection Algorithms**
-- **Isolation Forest**
-  - Designed for anomaly detection in high-dimensional datasets
-  - Learns to isolate outliers by random partitioning
-- **Local Outlier Factor (LOF)**
-  - Measures local deviation of a data point with respect to its neighbours
-  - Points with substantially lower density than their neighbours are considered outliers
+### Class Imbalance Handling
+- The positive class (default) represents only 22.12% of the data
+- SMOTE applied to balance the training data
+- Test data kept in original distribution to maintain realistic evaluation
 
-**Evaluation Metrics**
-- Accuracy, precision, recall, and F1-score, reported for both classes
-- Number of prediction errors (misclassifications) for each method
+### Machine Learning Models
+- **Logistic Regression**
+- **Random Forest**
+- **XGBoost**
+- **Linear SVM**
+- **CatBoost**
 
-### Example Results
+### Evaluation Metrics
+- Accuracy, precision, recall, and F1-score
+- ROC curves and AUC scores
+- Cross-validation results for model stability
+- Threshold optimisation for precision-recall tradeoff
 
-| Model                | Errors | Accuracy | Fraud Precision | Fraud Recall | Fraud F1 |
-|----------------------|--------|----------|-----------------|-------------|----------|
-| Isolation Forest     |   71   | 99.75%   |     0.28        |   0.29      |  0.28    |
-| Local Outlier Factor |   97   | 99.66%   |     0.02        |   0.02      |  0.02    |
+## Results
 
-Note: High accuracy is due to class imbalance; F1-score for the fraud class is a more meaningful metric.
+| Model | Accuracy | Precision | Recall | F1 Score |
+|-------|----------|-----------|--------|----------|
+| Random Forest | 78.16% | 50.56% | 56.65% | 53.43% |
+| CatBoost | 77.99% | 50.25% | 51.38% | 50.81% |
+| XGBoost | 78.12% | 50.56% | 49.82% | 50.19% |
+| Linear SVM | 72.67% | 41.38% | 56.55% | 47.79% |
+| Logistic Regression | 71.49% | 39.94% | 57.36% | 47.09% |
 
-### Tools and Libraries
-- **Python**: Jupyter/Colab notebook or script
+- **Best Model:** Random Forest with an F1 score of 53.43%
+- **Optimal Threshold:** 0.4867 for improved precision-recall balance
+
+## Tools and Libraries
+- **Python**: Jupyter/Colab notebook
 - **Data Manipulation**: numpy, pandas
 - **Visualisation**: matplotlib, seaborn
-- **Machine Learning**: scikit-learn
-- **Scientific Computing**: scipy
+- **Machine Learning**: scikit-learn, XGBoost, CatBoost
+- **Imbalance Handling**: imbalanced-learn (SMOTE)
 
-### Usage
-
+## Usage
 1. Ensure Python and required packages are installed:
-   - `numpy`, `pandas`, `matplotlib`, `seaborn`, `scikit-learn`, `scipy`
-2. Download [creditcard.csv](https://www.kaggle.com/mlg-ulb/creditcardfraud) and place it in your working directory.
-3. Run the script or notebook.
-   - The code will sample, visualise, and evaluate anomaly detection models.
-4. Review printed classification reports and accuracy metrics.
+2. Download the UCI Credit Card dataset
+3. Run the notebook to:
+- Preprocess data and engineer features
+- Apply SMOTE to balance training data
+- Train and evaluate multiple models
+- Visualise results and optimise thresholds
 
-### Future Work
-- Apply advanced resampling techniques (SMOTE, ADASYN) for better class balance
-- Experiment with supervised learning algorithms (Random Forest, XGBoost, Neural Networks)
-- Use cross-validation for more robust evaluation
-- Tune the hyperparameters of anomaly detection models
-- Deploy as a real-time fraud detection microservice
+## Future Work
+- Further hyperparameter tuning for improved performance
+- Cost-sensitive learning approaches
+- Additional feature engineering based on domain knowledge
+- Ensemble methods combining multiple model predictions
+- Deploy as a real-time default prediction service
 
+
+
+## Project 13: Age Prediction from Facial Images
+
+## Overview
+This project implements a deep learning model to predict a person's age from their facial image. Using transfer learning with MobileNetV2 and fine-tuning techniques, the model achieves reasonable accuracy in estimating ages between 20 and 50 years.
+
+## Dataset
+- **Source:** Kaggle dataset by MariaFrenti ([age-prediction](https://www.kaggle.com/datasets/mariafrenti/age-prediction))
+- **Structure:**
+  - Age-labelled facial images organised by age groups (20–50)
+  - 40,440 images across 31 different age categories
+  - Well-distributed dataset with approximately 1,200–1,600 images per age
+- **Sample Size:** 10,000 images used for model training (to manage computational resources)
+- **Split:** 70% training, 15% validation, 15% test
+
+## Implementation Details
+
+### Data Preprocessing
+- Image resizing to **120×120 pixels**
+- RGB normalisation (pixel values scaled to 0–1)
+- Data augmentation for the training set:
+  - Rotation (±20°)
+  - Width/height shifts (±20%)
+  - Shear and zoom transformations (20%)
+  - Horizontal flipping
+
+### Model Architecture
+- **Base Model:** MobileNetV2 (pre-trained on ImageNet)
+- **Custom Top Layers:**
+  - Global Average Pooling
+  - Dense (512 units, ReLU) + Batch Normalisation + Dropout (50%)
+  - Dense (256 units, ReLU) + Batch Normalisation + Dropout (30%)
+  - Output: 1 neuron (linear activation)
+
+### Training Approach
+- **Two-Phase Training:**
+  - Initial training with frozen base model (20 epochs)
+  - Fine-tuning by unfreezing the top 30 layers (20 epochs)
+- **Optimisation:**
+  - Adam optimiser (learning rate 0.001 initially, 1e-5 for fine-tuning)
+  - Mean Squared Error loss
+  - Early stopping (patience: 10/5 epochs)
+  - ReduceLROnPlateau (factor: 0.2, patience: 5 epochs)
+
+## Evaluation Metrics
+- Mean Absolute Error (MAE)
+- Root Mean Square Error (RMSE)
+- R² Score
+- Age group-specific error analysis
+
+## Results
+
+| Metric | Initial Model | Fine-tuned Model | Improvement |
+|--------|--------------|------------------|-------------|
+| **MAE** | 6.97 years | 6.88 years | 0.09 years |
+| **RMSE** | 8.37 years | 8.27 years | 0.10 years |
+| **R²** | 0.1130 | 0.1351 | +0.0221 |
+
+- **Age-Specific Performance:**
+  - Best for ages 30–40 (MAE: ~3.6–3.9 years)
+  - Reduced accuracy for 20–25 and 45–50 (MAE: ~9.9–10.2 years)
+- **Baseline Comparison:** 5.82% improvement over null model (predicting mean age)
+
+## Tools and Libraries
+- **Deep Learning:** TensorFlow, Keras
+- **Data Processing:** pandas, numpy
+- **Image Processing:** TensorFlow preprocessing
+- **Visualisation:** matplotlib
+- **Model Evaluation:** scikit-learn metrics
+
+## Technical Challenges
+- Limited input resolution (120×120) to balance memory usage and detail
+- Trade-off between model complexity and computational resources
+- Age bias in prediction accuracy across different age groups
+
+## Future Work
+- Face detection and alignment preprocessing for improved accuracy
+- Age-group specific models for better performance
+- Exploring EfficientNet, Vision Transformers
+- Incorporating facial features and landmarks
+- Ensemble methods combining multiple prediction approaches
 
 
